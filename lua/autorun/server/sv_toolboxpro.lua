@@ -10,9 +10,9 @@ end)
 
 hook.Add("KeyPress", "GTB_KeyPressDetection", function(ply, key )
     if ( key ==   IN_SCORE ) then 
-        GTB_PLAYERNAME = ply:GetName()
+        GTB_playername = ply:GetName()
         net.Start( "GTB_TabPress" )
-            net.WriteString( GTB_PLAYERNAME )
+            net.WriteString( GTB_playername )
         net.Broadcast() 
     end
 end)

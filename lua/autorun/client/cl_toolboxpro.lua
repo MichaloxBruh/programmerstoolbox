@@ -2,7 +2,7 @@ include("autorun/shared.lua")
 
 
 net.Receive("GTB_TabPress", function()
-    local GTB_PLAYERNAME_CL = net.ReadString()
+    local GTB_playername_cl = net.ReadString()
     local Frame = vgui.Create( "DFrame" )
     Frame:SetPos( 400, 300 ) 
     Frame:SetSize( 858  , 715 ) 
@@ -28,7 +28,7 @@ net.Receive("GTB_TabPress", function()
         
     end
     local NameLabel = vgui.Create("DLabel", Frame)
-    NameLabel:SetText(" Hello " .. GTB_PLAYERNAME_CL .. "!")
+    NameLabel:SetText(" Hello " .. GTB_playername_cl .. "!")
     NameLabel:SetTextColor( Color(0, 153, 255, 250) )
     NameLabel:SetPos(60,20)
     NameLabel:SetSize("100, 100")
@@ -40,7 +40,7 @@ end)
 
 
 
-function GTB_HEALTHPANEL() 
+function GTB_healthpanel() 
     local fhealth = vgui.Create( "DFrame" )
     fhealth:SetPos( 400, 300 ) 
     fhealth:SetSize( 858  , 715 ) 
@@ -50,6 +50,6 @@ function GTB_HEALTHPANEL()
     fhealth:ShowCloseButton( true ) 
     fhealth:MakePopup()
     fhealth:MakePopup()
-    fhealth.Paint = function( self, w, h ) -- 'function Frame:Paint( w, h )' works too
+    fhealth.Paint = function( self, w, h ) 
         draw.RoundedBox( 0, 0, 0, w, h, Color( 71, 68, 67, 150)  ) 
 end
