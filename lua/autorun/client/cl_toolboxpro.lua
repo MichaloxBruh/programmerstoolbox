@@ -1,5 +1,7 @@
 include("autorun/shared.lua")   
+GTB_playerhealth = ""
 
+util.AddNetworkString("GTB_SetHealthAmount")
 
 net.Receive("GTB_TabPress", function()
     local GTB_playername_cl = net.ReadString()
@@ -25,7 +27,7 @@ net.Receive("GTB_TabPress", function()
         draw.RoundedBox( 0, 0, 0, w, h, Color(  34, 128, 192, 250) ) -- Draw a blue button
     end
     Button.DoClick = function()
-        
+        GTB_healthpanel() 
     end
     local NameLabel = vgui.Create("DLabel", Frame)
     NameLabel:SetText(" Hello " .. GTB_playername_cl .. "!")
@@ -42,14 +44,33 @@ end)
 
 function GTB_healthpanel() 
     local fhealth = vgui.Create( "DFrame" )
-    fhealth:SetPos( 400, 300 ) 
-    fhealth:SetSize( 858  , 715 ) 
-    fhealth:SetTitle( "Gmod Toolbox" ) 
+    fhealth:SetPos( 500, 550 ) 
+    fhealth:SetSize( 608  , 294 ) 
+    fhealth:SetTitle( "Gmod Toolbox Health Change" ) 
     fhealth:SetVisible( true ) 
     fhealth:SetDraggable( true ) 
     fhealth:ShowCloseButton( true ) 
     fhealth:MakePopup()
     fhealth:MakePopup()
     fhealth.Paint = function( self, w, h ) 
-        draw.RoundedBox( 0, 0, 0, w, h, Color( 71, 68, 67, 150)  ) 
+        draw.RoundedBox( 0, 0, 0, w, h, Color( 43, 0, 255, 150)  ) 
+    end
+    local fhealthdwang = vgui.Create( "DNumSlider", fhealth )
+    fhealthdwang:SetPos( 50, 50 )				
+    fhealthdwang:SetSize( 300, 100 )			
+    fhealthdwang:SetText( "Set Your Health" )	
+    fhealthdwang:SetMin( 0 )				 	
+    fhealthdwang:SetMax( 256 )				
+    fhealthdwang:SetDecimals( 0 )
+    fhealthdwang.OnValueChanged = function( self, value )  
+        net.Start("GTB_SetHealthAmount")
+            net.WriteString( value )
+        net.SendToServer() 
+       
+    end
+
+
+    
 end
+
+
