@@ -1,7 +1,7 @@
 include("autorun/shared.lua")
 print("TEST")  
 util.AddNetworkString( "GTB_TabPress" )
-
+util.AddNetworkString( "GTB_SetHealthAmount")
 
 hook.Add("PlayerConnect", "GTB_GetPlayerName", function(ply, ip )  
     

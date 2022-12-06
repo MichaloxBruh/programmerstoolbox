@@ -1,7 +1,7 @@
 include("autorun/shared.lua")   
 GTB_playerhealth = ""
 
-util.AddNetworkString("GTB_SetHealthAmount")
+
 
 net.Receive("GTB_TabPress", function()
     local GTB_playername_cl = net.ReadString()
